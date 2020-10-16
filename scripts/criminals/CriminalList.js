@@ -24,7 +24,7 @@ export const CriminalList = () => {
         // insert this HTML into element held in the value of targetElement
         targetElement.innerHTML = `
         <h3>Glassdale Criminals</h3>
-          <section>
+          <section class="criminalsList">
             ${criminalsHTMLRep}
           </section>
         `
