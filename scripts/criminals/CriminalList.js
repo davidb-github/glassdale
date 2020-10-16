@@ -20,13 +20,13 @@ export const CriminalList = () => {
         // add returned criminal HTML for each elemnt to criminalsHTMLRep  
         for (const criminal of criminalsArray) {
             criminalsHTMLRep += CriminalHTML(criminal)
-
+        
+        // insert this HTML into element held in the value of targetElement
         targetElement.innerHTML = `
         <h3>Glassdale Criminals</h3>
-
-        <section>
-        ${criminalsHTMLRep}
-        </section>
+          <section>
+            ${criminalsHTMLRep}
+          </section>
         `
         }
 
