@@ -1,7 +1,7 @@
 /**
  *  CriminalHTML which renders individual criminal objects as HTML
  */
-export const criminalHTML = (criminalObj) => {
+export const CriminalHTML = (criminalObj) => {
 
     return `
         <section class="criminal__card">
