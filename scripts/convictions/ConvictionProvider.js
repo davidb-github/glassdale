@@ -1,11 +1,18 @@
+// init var to hold convictions array built by getConvictions()
 let convictions = []
 
-export const useConvictions = () => convictions.slice()
+// return copy of convictions array
+export const useConvictions = () => {
+    return convictions.slice()
+}
 
+// fetch conviction data and populate convictions array
 export const getConvictions = () => {
-    /*
-        Load database state into application state with a fetch().
-        Make sure the last `then()` sets the local `convictions`
-        variable to what is in the response from the API.
-    */
+    return fetch("https://criminals.glassdale.us/crimes")
+        .then(response => response.json())
+        .then (
+            parsedConvictions => {
+                convictions = parsedConvictions
+            }
+        )
 }
