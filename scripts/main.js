@@ -1,7 +1,8 @@
 // import data provider functions
 import { CriminalList } from './criminals/CriminalList.js';
-import { getCriminals, useCriminals } from './criminals/CriminalProvider.js';
-import { getOfficers, useOfficers } from './officers/OfficerProvider.js'
+import { OfficerList } from './officers/OfficerList.js'
+// import { getCriminals, useCriminals } from './criminals/CriminalProvider.js';
+// import { getOfficers, useOfficers } from './officers/OfficerProvider.js'
 
 // debug
 // console.log("Welcome to the main module")
@@ -14,6 +15,8 @@ import { getOfficers, useOfficers } from './officers/OfficerProvider.js'
 // criminals = useCriminals();
 // console.log(useCriminals())
 CriminalList();
+OfficerList();
+
 
 
 
