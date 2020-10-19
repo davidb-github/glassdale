@@ -1,21 +1,21 @@
 // import data provider functions
+import { ConvictionSelect } from './convictions/ConvictionSelect.js';
 import { CriminalList } from './criminals/CriminalList.js';
 import { OfficerList } from './officers/OfficerList.js'
-// import { getCriminals, useCriminals } from './criminals/CriminalProvider.js';
-// import { getOfficers, useOfficers } from './officers/OfficerProvider.js'
-
-// debug
-// console.log("Welcome to the main module")
 
 // invoke functions
-// getOfficers();          // console.table(parsedOfficers)s
-// useOfficers();          // array compliments of officers.slice() 
-
-// getCriminals();
-// criminals = useCriminals();
-// console.log(useCriminals())
 CriminalList();
 OfficerList();
+ConvictionSelect();
+
+
+
+
+
+
+
+
+
 
 
 
