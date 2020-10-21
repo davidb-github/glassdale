@@ -4,9 +4,10 @@ import { CriminalList } from './criminals/CriminalList.js';
 import { OfficerList } from './officers/OfficerList.js'
 
 // invoke functions
-CriminalList();
 OfficerList();
 ConvictionSelect();
+CriminalList();
+
 
 
 
