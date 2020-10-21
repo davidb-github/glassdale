@@ -21,7 +21,7 @@ export const CriminalList = () => {
   })
 }
 
-// Listen for the custom event you dispatched in ConvictionSelect
+// Listen for the custom event dispatched in ConvictionSelect
 eventHub.addEventListener('crimeChosen', event => {
   console.log("crimeSelect event happened", event.detail.crimeThatWasChosen)
   // Use the property you added to the event detail.
@@ -42,7 +42,7 @@ eventHub.addEventListener('crimeChosen', event => {
 
     console.log("convictionThatWasChosen", convictionThatWasChosen)
 
-    // FIXED: Issue here: criminalsArray is empty at this point:
+    // build filtered array of objects
     const filteredCriminalsArray = criminalsArray.filter(criminalObj => {
       return criminalObj.conviction === convictionThatWasChosen.name
 
@@ -53,6 +53,26 @@ eventHub.addEventListener('crimeChosen', event => {
     render(filteredCriminalsArray)
   }
 })
+
+// Listen for the custom event you dispatched in OfficerSelect
+eventHub.addEventListener("officerSelected", officerSelectedEventObj => {
+  const selectedOfficerName = officerSelectedEventObj.detail.officerName
+  console.log("CriminalList: officerSelected custom event has been heard on the event hub, selected officer name: ", selectedOfficerName)
+
+  const criminalsArray = useCriminals()
+  console.log("criminalsArray", criminalsArray)
+
+  const filteredArrayCriminals = criminalsArray.filter(
+    (criminalObj) => {
+      return criminalObj.arrestingOfficer === selectedOfficerName
+    }
+  )
+  console.log("CriminalList: Array of criminals filtered for only the criminals that were arrested by selected officer", filteredArrayCriminals)
+
+  render(filteredArrayCriminals)
+  console.log("CriminalList: Filtered list of criminals rendered to DOM")
+})
+
 
 const render = (criminalsArray) => {
   // init var to hold completed HTML
