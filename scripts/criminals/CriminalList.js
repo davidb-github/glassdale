@@ -11,7 +11,7 @@ const targetElement = document.querySelector(".criminalsContainer")
 
 // export function to build criminal HTML for index.html
 export const CriminalList = () => {
- 
+
   // generate HTML for each criminal object
   getCriminals().then(() => {
     // init and populate criminals array
@@ -23,31 +23,31 @@ export const CriminalList = () => {
 
 // Listen for the custom event dispatched in ConvictionSelect
 eventHub.addEventListener('crimeChosen', event => {
-  console.log("crimeSelect event happened", event.detail.crimeThatWasChosen)
-  // Use the property you added to the event detail.
+  // console.log("crimeSelect event happened", event.detail.crimeThatWasChosen)
+  // Use the property added to the event detail.
   if (event.detail.crimeThatWasChosen !== "0") {
 
-    debugger
+    // debugger
     let criminalsArray = useCriminals();
-    console.log("array of criminals", criminalsArray)
+    // console.log("array of criminals", criminalsArray)
 
 
     const convictionsArray = useConvictions();
-    console.log("array of convictions", convictionsArray)
+    // console.log("array of convictions", convictionsArray)
 
-    // my issue is here
+    // build array filtered by id
     const convictionThatWasChosen = convictionsArray.find(convictionObj => {
       return convictionObj.id === event.detail.crimeThatWasChosen
     })
 
-    console.log("convictionThatWasChosen", convictionThatWasChosen)
+    // console.log("convictionThatWasChosen", convictionThatWasChosen)
 
     // build filtered array of objects
     const filteredCriminalsArray = criminalsArray.filter(criminalObj => {
       return criminalObj.conviction === convictionThatWasChosen.name
 
     })
-    console.log("filteredCriminalsArray", filteredCriminalsArray)
+    // console.log("filteredCriminalsArray", filteredCriminalsArray)
 
     // call render and pass filtered criminal array
     render(filteredCriminalsArray)
@@ -57,20 +57,20 @@ eventHub.addEventListener('crimeChosen', event => {
 // Listen for the custom event you dispatched in OfficerSelect
 eventHub.addEventListener("officerSelected", officerSelectedEventObj => {
   const selectedOfficerName = officerSelectedEventObj.detail.officerName
-  console.log("CriminalList: officerSelected custom event has been heard on the event hub, selected officer name: ", selectedOfficerName)
+  // console.log("CriminalList: officerSelected custom event received by EventHub, selected officer name: ", selectedOfficerName)
 
   const criminalsArray = useCriminals()
-  console.log("criminalsArray", criminalsArray)
+  // console.log("criminalsArray", criminalsArray)
 
   const filteredArrayCriminals = criminalsArray.filter(
     (criminalObj) => {
       return criminalObj.arrestingOfficer === selectedOfficerName
     }
   )
-  console.log("CriminalList: Array of criminals filtered for only the criminals that were arrested by selected officer", filteredArrayCriminals)
+  // console.log("CriminalList: Array of criminals filtered for only the criminals that were arrested by selected officer", filteredArrayCriminals)
 
   render(filteredArrayCriminals)
-  console.log("CriminalList: Filtered list of criminals rendered to DOM")
+  // console.log("CriminalList: Filtered list of criminals rendered to DOM")
 })
 
 

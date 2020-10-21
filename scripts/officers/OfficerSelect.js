@@ -6,15 +6,14 @@ const selectTarget = document.querySelector(".filters__officer")
 
 // hang eventHub on the top-level class
 const eventHub = document.querySelector(".container")
-// debug
-console.log("OfficerSelect: Getting reference to container for dropdown and event hub")
+// console.log("OfficerSelect: Getting reference to container for dropdown and event hub")
 
 // export function to get officer data and render drop-down to DOM
 export const OfficerSelect = () => {
     getOfficers()
     .then(() => {
       const officersArray = useOfficers()
-      console.log("officersArrays", officersArray)
+    //   console.log("officersArrays", officersArray)
 
     render(officersArray)
     })
@@ -38,16 +37,16 @@ const render = (officers) => {
 // Event Listener for officerSelect change event
   eventHub.addEventListener("change", (changeEvent) => {
     if (changeEvent.target.id === "officerSelect") {
-      console.log("OfficerSelect: Change event happened in the officers dropdown")
+    //   console.log("OfficerSelect: Change event happened in the officers dropdown")
       
-      console.log("OfficerSelect: Build custom event for officerSelected")
+    //   console.log("OfficerSelect: Build custom event for officerSelected")
       const officerSelectedEvent = new CustomEvent("officerSelected", {
         detail: {
           officerName: changeEvent.target.value
         }
       })
   
-    console.log("OfficerSelect: Dispatch officerSelected event to event hub")
+    // console.log("OfficerSelect: Dispatch officerSelected event to event hub")
     // dispatch CustomEvent w/ detail - officerName: changeEvent.target.value  
     eventHub.dispatchEvent(officerSelectedEvent)
     }
