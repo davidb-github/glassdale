@@ -49,3 +49,15 @@ h1,h2,h3,h4,h5,h6 {
 	padding: 0.5rem;
 	flex-basis: 25%;
 }
+
+.investigation {
+	display: flex;
+}
+
+.criminalsContainer {
+	flex: 4;
+}
+
+.notesContainer {
+	flex: 1;
+}
