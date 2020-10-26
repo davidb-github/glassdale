@@ -1,52 +1,12 @@
 {
   "notes": [
     {
-      "id": 1,
-      "date": "10/22/2020",
-      "timestamp": "99999",
-      "author": "Niel McKaskey",
-      "suspect": "bad-guy-1",
-      "note": "He's a bad dude. He looks guilty."
-    },
-    {
-      "date": "2020-10-23",
-      "timestamp": 1603385341498,
-      "author": "david",
-      "suspect": "susname",
-      "note": "notes ",
-      "id": 2
-    },
-    {
-      "date": "2020-10-23",
-      "timestamp": 1603393458077,
-      "author": "david",
-      "suspect": "sus",
-      "note": "totes sus ",
-      "id": 3
-    },
-    {
-      "date": "2020-10-24",
-      "timestamp": 1603394190225,
-      "author": "chuck norris",
-      "suspect": "everyone",
-      "note": " don't mess with Chuck",
-      "id": 4
-    },
-    {
-      "date": "",
-      "timestamp": 1603394737852,
-      "author": "",
-      "suspect": "",
-      "note": " ",
-      "id": 5
-    },
-    {
-      "date": "2020-10-23",
-      "timestamp": 1603396652833,
-      "author": "David",
-      "suspect": "suspect-12",
-      "note": " sus-12 left the country",
-      "id": 6
+      "date": "2020-10-25",
+      "timestamp": 1603715521295,
+      "author": "Johnny",
+      "suspect": "Keith",
+      "note": "Keith is shifty ",
+      "id": 1
     }
   ]
 }
