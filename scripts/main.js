@@ -1,11 +1,14 @@
-// import data provider functions
+// import components 
 import { ConvictionSelect } from './convictions/ConvictionSelect.js';
 import { CriminalList }     from './criminals/CriminalList.js';
 import { NoteForm }         from './notes/NoteForm.js';
 import { NoteList }         from './notes/NoteList.js';
 import { OfficerList }      from './officers/OfficerList.js'
-import {OfficerSelect}      from './officers/OfficerSelect.js'
+import { OfficerSelect }    from './officers/OfficerSelect.js'
+import { witnessButton }    from './witnesses/WitnessButton.js'
+// import modules to activate event listeners
 import                           './criminals/AlibiList.js'
+import                           './witnesses/WitnessList.js'
 
 // invoke functions
 OfficerList();
@@ -14,6 +17,7 @@ CriminalList();
 OfficerSelect();
 NoteForm();
 NoteList();
+witnessButton();
 
 
 
