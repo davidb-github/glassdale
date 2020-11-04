@@ -8,7 +8,9 @@ const render = () => {
     contentTarget.innerHTML = `
     <input id="note--interviewDate" type="date"/>
     <input id="note--author" type="text" placeholder="Your name here"/>
-    <input id="note--suspect" type="text" placeholder="suspect name here"/><br>
+    <select id ="note--criminal" class="criminalSelect"> 
+      <option value="criminaldotid">criminaldotname</option>
+    </select>
     <textarea id="note--note" type="text" rows="5" cols="60"> </textarea><br>
     <button id="saveNote">Save Note</button>
     `
@@ -28,11 +30,11 @@ eventHub.addEventListener("click", clickEvent => {
         
         // and make a note object
         const newNote = {
-            "date"      : interviewDate,
-            "timestamp" : timestamp,
-            "author"    : author,
-            "suspect"   : suspect,
-            "note"      : note
+            "date"       : interviewDate,
+            "timestamp"  : timestamp,
+            "author"     : author,
+            "criminalId" : selectedCriminalID,
+            "note"       : note
         }
         // console.log(newNote);
         // send to json-server
