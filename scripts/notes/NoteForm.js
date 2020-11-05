@@ -22,11 +22,11 @@ eventHub.addEventListener("click", clickEvent => {
     // ensure click has id of saveNote
     if(clickEvent.target.id === "saveNote") {
         // grab input values
-        const interviewDate = document.querySelector("#note--interviewDate").value
-        const timestamp     = Date.now()
-        const author        = document.querySelector("#note--author").value
-        const suspect       = document.querySelector("#note--suspect").value
-        const note          = document.querySelector("#note--note").value
+        const interviewDate       = document.querySelector("#note--interviewDate").value
+        const timestamp           = Date.now()
+        const author              = document.querySelector("#note--author").value
+        const selectedCriminalID  = document.querySelector("#note--criminal").value
+        const note                = document.querySelector("#note--note").value
         
         // and make a note object
         const newNote = {
