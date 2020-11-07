@@ -42,11 +42,11 @@ eventHub.addEventListener("click", clickEvent => {
 
         // and make a note object
         const newNote = {
-            "date"      : interviewDate,
-            "timestamp" : timestamp,
-            "author"    : author,
-            "criminalId": selectedCriminalID,
-            "note"      : note
+            "date"       : interviewDate,
+            "timestamp"  : timestamp,
+            "author"     : author,
+            "criminalId" : selectedCriminalID,
+            "note"       : note
         }
         // console.log(newNote);
         // send to json-server
@@ -59,7 +59,7 @@ export const NoteForm = () => {
     getCriminals()
         .then(() => {
             const criminalsArray = useCriminals()
-            // console.log(criminalsArray)
+            
             // invoke render and pass officersArray
             render(criminalsArray)
         })
