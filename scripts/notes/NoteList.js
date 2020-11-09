@@ -23,7 +23,10 @@ export const NoteList = () => {
       render(notesArray, criminalsArray)
     })
 }
-// Unable to get the .map approach working
+/* Question on target pattern. 
+Is it better to call .map and paint the html directly and get rid of the noteHTML.js module?
+Leaving original render function that calls noteHTML() until after discussion
+*/
 // const render = (notesArray, criminalsArray) => {
 //   let notesHTMLRep = ""
   // debugger
@@ -39,6 +42,7 @@ export const NoteList = () => {
 //   `
 // }
 
+// maps through notesArray and puts HTML directly on the DOM.
 const render = (notesArray, criminalsArray) => {
   notesContainer.innerHTML = notesArray.map(note => {
       // Find the related criminal
