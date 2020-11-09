@@ -40,3 +40,12 @@ export const saveNote = note => {
     // dispatch event to eventHub after api state updates
     .then(dispatchStateChangeEvent)
 }
+
+// export function to delete note via HTTP DELETE method to json-server
+export const deleteNote = noteId => {
+    return fetch(`http://localhost:8088/notes/${noteId}`, {
+        method: "DELETE"
+    })
+        // update app state to match api state
+        .then(getNotes)
+}
