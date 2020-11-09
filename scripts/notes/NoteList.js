@@ -1,7 +1,8 @@
 import { getNotes, useNotes } from './NoteProvider.js'
 import { NoteHTML } from './NoteHTML.js'
 import { getCriminals, useCriminals } from '../criminals/CriminalProvider.js'
-// import useCriminals for use in render function below
+import { deleteNote } from './NoteProvider.js'
+
 
 
 // get a reference to target HTML attribute where notes will render
@@ -54,7 +55,24 @@ const render = (notesArray, criminalsArray) => {
   <p class="note__suspect">Suspect: ${relatedCriminal.name} </p>
   <p class="note__conviction"> Note: ${note.note}</p>
   <p class="note__date"> Date: ${new Date(note.timestamp).toLocaleDateString('en-US')}</p>
+  <button id="deleteNote--${note.id}">Delete</button>
 </section>
       `
   }).join("")
 }
+
+eventHub.addEventListener("click", clickEvent => {
+  if (clickEvent.target.id.startsWith("deleteNote--")) {
+      const [prefix, id] = clickEvent.target.id.split("--")
+
+      // Invoke the function that performs the delete operation.
+     deleteNote(id).then(
+         () => {
+            // Once the operation is complete you should THEN invoke useNotes() and render the note list again.
+             const updatedNotes = useNotes()
+             const criminals = useCriminals()
+             render(updatedNotes, criminals)
+         }
+     )
+  }
+})
