@@ -10,7 +10,7 @@ export const getFacilities = () => {
         return response.json()
     })
     .then(apiData => {
-        console.log(apiData)
+        // console.log(apiData)
         return facilities = apiData
         // return "Hello, I'm the ultimate return value from getFacilities. I will be sent to "
     })
