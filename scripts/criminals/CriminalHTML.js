@@ -5,7 +5,7 @@
 //  hang eventHub off of top level element in index.html.
  const eventHub = document.querySelector(".container")
 
-export const CriminalHTML = (criminalObj) => {
+export const CriminalHTML = (criminalObj, facilities) => {
     return `
         <section class="criminal__card" id="criminal-${criminalObj.id}">
             <h2 class="criminal__name">${criminalObj.name}</h2>
@@ -13,6 +13,9 @@ export const CriminalHTML = (criminalObj) => {
             <div class="criminal__conviction">Crime: ${criminalObj.conviction}</div>
             <div class="criminal__conviction">Term start: ${new Date(criminalObj.incarceration.start).toLocaleDateString('en-US')}</div>
             <div class="criminal__conviction">Term end: ${new Date(criminalObj.incarceration.end).toLocaleDateString('en-US')}</div>
+            <div class="criminal__facility">
+                    ${facilities.map(f => `<p> Facility: ${f.facilityName}</p>`).join("")}
+            </div>
             <button id="associates--${criminalObj.id}">Associate Alibis</button>   
         </section>
     `
