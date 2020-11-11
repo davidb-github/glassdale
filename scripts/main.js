@@ -9,6 +9,8 @@ import { witnessButton }    from './witnesses/WitnessButton.js'
 // import modules to activate event listeners
 import                           './criminals/AlibiList.js'
 import                           './witnesses/WitnessList.js'
+import                           './facilities/FacilityProvider.js'
+import                           './facilities/CriminalFacilityProvider.js'
 
 // invoke functions
 OfficerList();
