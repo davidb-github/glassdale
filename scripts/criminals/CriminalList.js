@@ -2,6 +2,8 @@
 import { getCriminals, useCriminals } from './CriminalProvider.js'
 import { CriminalHTML } from './CriminalHTML.js'
 import { useConvictions } from '../convictions/ConvictionProvider.js'
+import { getFacilities, useFacilities } from '../facilities/FacilityProvider.js'
+import { getCriminalFacilities, useCriminalFacilities } from '../facilities/CriminalFacilityProvider.js'
 
 // define eventHub scope
 const eventHub = document.querySelector(".container")
@@ -9,15 +11,27 @@ const eventHub = document.querySelector(".container")
 // get a reference to the target HTML element
 const targetElement = document.querySelector(".criminalsContainer")
 
+// Component state variables with initial values
+let facilities         = []
+let criminals          = []
+let criminalFacilities = []
+
+
 // export function to build criminal HTML for index.html
 export const CriminalList = () => {
 
   // generate HTML for each criminal object
-  getCriminals().then(() => {
+  getCriminals()
+  .then(getFacilities)
+  .then(getCriminalFacilities)
+  .then( () => {
     // init and populate criminals array
-    const criminalsArray = useCriminals()
+    // are these vars the same as lines 15-17
+    const criminalsArray     = useCriminals()
+    const criminalFacilities = useCriminalFacilities()
+    const facilities         = useFacilities()
     // call render and pass our criminalsArray
-    render(criminalsArray)
+    render(criminalsArray, facilities, criminalFacilities)
   })
 }
 
@@ -74,22 +88,41 @@ eventHub.addEventListener("officerSelected", officerSelectedEventObj => {
 })
 
 
-const render = (criminalsArray) => {
+const render = (criminalsToRender, allFacilities, allRelationships) => {
   // init var to hold completed HTML
   let criminalsHTMLRep = ""
+// debugger
+  // Step 1 - Iterate all criminals
+  targetElement.innerHTML = criminalsToRender.map(
+    (criminalObject) => {
+        // Step 2 - Filter all relationships to get only ones for this criminal
+        const facilityRelationshipsForThisCriminal = allRelationships.filter(cf => cf.criminalId === criminalObject.id)
 
-  // loop criminal array and call CriminalHTML for each element
-  // add returned criminal HTML for each elemnt to criminalsHTMLRep  
-  for (const criminal of criminalsArray) {
-    criminalsHTMLRep += CriminalHTML(criminal)
-
-    // insert this HTML into element held in the value of targetElement
-    targetElement.innerHTML = `
-        <h3>Glassdale Criminals</h3>
-          <section class="criminalsList">
-            ${criminalsHTMLRep}
-          </section>
-        `
-  }
-
+        // Step 3 - Convert the relationships to facilities with map()
+        const facilities             = facilityRelationshipsForThisCriminal.map(cf => {
+        const matchingFacilityObject = allFacilities.find(facility => facility.id === cf.facilityId)
+            return matchingFacilityObject
+        })
+// debugger
+        // Must pass the matching facilities to the Criminal component
+        return CriminalHTML(criminalObject, facilities)
+    }
+).join("")
 }
+  
+  
+  // loop criminal array and call CriminalHTML for each element
+  //  for (const criminal of criminalsArray) {
+  //   // add returned criminal HTML for each elemnt to criminalsHTMLRep 
+  //   criminalsHTMLRep += CriminalHTML(criminal)
+
+  //   // insert this HTML into element held in the value of targetElement
+  //   targetElement.innerHTML = `
+  //       <h3>Glassdale Criminals</h3>
+  //         <section class="criminalsList">
+  //           ${criminalsHTMLRep}
+  //         </section>
+  //       `
+  // }
+
+// }
