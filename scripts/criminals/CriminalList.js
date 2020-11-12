@@ -13,7 +13,7 @@ const targetElement = document.querySelector(".criminalsContainer")
 
 // Component state variables with initial values
 let facilities         = []
-let criminalsArray     = []
+let criminals     = []
 let criminalFacilities = []
 
 
@@ -27,11 +27,11 @@ export const CriminalList = () => {
   .then( () => {
     // init and populate criminals array
     // are these vars the same as lines 15-17
-    criminalsArray     = useCriminals()
+    criminals          = useCriminals()
     criminalFacilities = useCriminalFacilities()
     facilities         = useFacilities()
     // call render and pass our criminalsArray
-    render(criminalsArray, facilities, criminalFacilities)
+    render() //criminalsArray, facilities, criminalFacilities
   })
 }
 
@@ -55,7 +55,7 @@ eventHub.addEventListener('crimeChosen', event => {
     })
 
     // console.log("convictionThatWasChosen", convictionThatWasChosen)
-
+// debugger
     // build filtered array of objects
     const filteredCriminalsArray = criminalsArray.filter(criminalObj => {
       return criminalObj.conviction === convictionThatWasChosen.name
@@ -64,7 +64,9 @@ eventHub.addEventListener('crimeChosen', event => {
     // console.log("filteredCriminalsArray", filteredCriminalsArray)
 
     // call render and pass filtered criminal array
-    render(filteredCriminalsArray, facilities, criminalFacilities)
+    criminals = filteredCriminalsArray
+
+    render(filteredCriminalsArray) //filteredCriminalsArray, facilities, criminalFacilities
   }
 })
 
@@ -83,29 +85,32 @@ eventHub.addEventListener("officerSelected", officerSelectedEventObj => {
   )
   // console.log("CriminalList: Array of criminals filtered for only the criminals that were arrested by selected officer", filteredArrayCriminals)
 
-  render(filteredArrayCriminals, facilities, criminalFacilities)
+  // filteredArrayCriminals, facilities, criminalFacilities
+  criminals = filteredArrayCriminals
+
+  render(filteredArrayCriminals)
   // console.log("CriminalList: Filtered list of criminals rendered to DOM")
 })
 
-
-const render = (criminalsToRender, allFacilities, allRelationships) => {
+// , allFacilities, allRelationships
+const render = (criminalsToRender) => {
   // init var to hold completed HTML
-  let criminalsHTMLRep = ""
-// debugger
-  // Step 1 - Iterate all criminals
-  targetElement.innerHTML = criminalsToRender.map(
+  // let criminalsHTMLRep = ""
+// debugger 
+  // Step 1 - Iterate all criminals // criminalsToRender
+  targetElement.innerHTML = criminals.map(
     (criminalObject) => {
         // Step 2 - Filter all relationships to get only ones for this criminal
-        const facilityRelationshipsForThisCriminal = allRelationships.filter(cf => cf.criminalId === criminalObject.id)
+        const facilityRelationshipsForThisCriminal = criminalFacilities.filter(cf => cf.criminalId === criminalObject.id)
 
         // Step 3 - Convert the relationships to facilities with map()
-        const facilities             = facilityRelationshipsForThisCriminal.map(cf => {
-        const matchingFacilityObject = allFacilities.find(facility => facility.id === cf.facilityId)
+        const matchedFacilities             = facilityRelationshipsForThisCriminal.map(cf => {
+        const matchingFacilityObject = facilities.find(facility => facility.id === cf.facilityId)
             return matchingFacilityObject
         })
 // debugger
         // Must pass the matching facilities to the Criminal component
-        return CriminalHTML(criminalObject, facilities)
+        return CriminalHTML(criminalObject, matchedFacilities)
     }
 ).join("")
 }
