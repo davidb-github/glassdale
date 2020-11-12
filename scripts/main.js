@@ -6,11 +6,17 @@ import { NoteList }         from './notes/NoteList.js';
 import { OfficerList }      from './officers/OfficerList.js'
 import { OfficerSelect }    from './officers/OfficerSelect.js'
 import { witnessButton }    from './witnesses/WitnessButton.js'
+import { facilitiesButton } from './facilities/DisplayFacilitiesButton.js';
+
+// temp
+import './facilities/FacilityList.js'
+
 // import modules to activate event listeners
 import                           './criminals/AlibiList.js'
 import                           './witnesses/WitnessList.js'
 import                           './facilities/FacilityProvider.js'
 import                           './facilities/CriminalFacilityProvider.js'
+
 
 // invoke functions
 OfficerList();
@@ -20,6 +26,7 @@ OfficerSelect();
 NoteForm();
 NoteList();
 witnessButton();
+facilitiesButton();
 
 
 
