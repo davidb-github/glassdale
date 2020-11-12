@@ -13,7 +13,7 @@ const targetElement = document.querySelector(".criminalsContainer")
 
 // Component state variables with initial values
 let facilities         = []
-let criminals          = []
+let criminalsArray     = []
 let criminalFacilities = []
 
 
@@ -27,9 +27,9 @@ export const CriminalList = () => {
   .then( () => {
     // init and populate criminals array
     // are these vars the same as lines 15-17
-    const criminalsArray     = useCriminals()
-    const criminalFacilities = useCriminalFacilities()
-    const facilities         = useFacilities()
+    criminalsArray     = useCriminals()
+    criminalFacilities = useCriminalFacilities()
+    facilities         = useFacilities()
     // call render and pass our criminalsArray
     render(criminalsArray, facilities, criminalFacilities)
   })
@@ -64,7 +64,7 @@ eventHub.addEventListener('crimeChosen', event => {
     // console.log("filteredCriminalsArray", filteredCriminalsArray)
 
     // call render and pass filtered criminal array
-    render(filteredCriminalsArray)
+    render(filteredCriminalsArray, facilities, criminalFacilities)
   }
 })
 
@@ -83,7 +83,7 @@ eventHub.addEventListener("officerSelected", officerSelectedEventObj => {
   )
   // console.log("CriminalList: Array of criminals filtered for only the criminals that were arrested by selected officer", filteredArrayCriminals)
 
-  render(filteredArrayCriminals)
+  render(filteredArrayCriminals, facilities, criminalFacilities)
   // console.log("CriminalList: Filtered list of criminals rendered to DOM")
 })
 
