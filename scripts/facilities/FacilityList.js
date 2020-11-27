@@ -8,7 +8,7 @@ import { getFacilities, useFacilities } from './FacilityProvider.js'
 const eventHub = document.querySelector(".container")
 
 // target landing spot in index.html for the facilities
-const targetContainer = document.querySelector(".criminalsContainer")
+const targetContainer = document.querySelector(".facilityContainer")
 
 // Component state variables with initial values
 let facilities         = []
@@ -39,22 +39,31 @@ const FacilityList = () => {
         render()
         })
 
-debugger
+// debugger
 // render function to build HTML and send to DOM
 const render = () => {
     let htmlRep = ""
     // Step 1 - Iterate all facilities
     targetContainer.innerHTML = facilities.map( 
-        (facilities) => {
-            htmlRep += facilities
+        (facilityObj) => {
+            // lets just get facilities on the dom first.
+            htmlRep += FacilityHTML(facilityObj)
 
-            
             // Step 2 - Filter all relationships to get only ones for this facility
+            
             // const criminalRelationshipsForThisFacility = criminalFacilities.filter(cf => cf.criminalId ===  )
             
 
             // Step 3 - Convert the relationships to facilities with map()
         })
+        targetContainer.innerHTML = `
+        <h1>Incarceration Facilities</h1>
+            <section class="facilitiesList">
+                ${htmlRep}
+            <button id="hideFacilityCards">Hide Facilities</button>
+            </section>
+            `
+        
 
 
 }
